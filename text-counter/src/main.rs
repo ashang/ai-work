@@ -1,5 +1,6 @@
 use clap::Parser;
 use std::fs;
+use std::io::Read;
 use std::path::PathBuf;
 use walkdir::WalkDir;
 
@@ -23,35 +24,64 @@ struct FileResult {
     count: usize,
 }
 
+/// Check if a file is a text file by examining its content, similar to grep/ripgrep
+/// Reads the first 8KB of the file and checks for binary indicators
 fn is_text_file(path: &PathBuf) -> bool {
-    if let Some(ext) = path.extension() {
-        let ext_str = ext.to_string_lossy().to_lowercase();
-        matches!(
-            ext_str.as_str(),
-            "txt" | "md" | "rs" | "py" | "js" | "ts" | "json" | "xml" | "yaml" | "yml"
-                | "toml" | "ini" | "cfg" | "conf" | "html" | "css" | "sh" | "bash" | "zsh"
-                | "c" | "cpp" | "h" | "hpp" | "java" | "go" | "rb" | "php" | "swift"
-                | "kt" | "scala" | "clj" | "hs" | "ml" | "fs" | "vb" | "cs" | "sql"
-                | "r" | "m" | "pl" | "pm" | "lua" | "vim" | "el" | "ex" | "exs" | "erl"
-                | "hrl" | "dockerfile" | "makefile" | "cmake" | "gradle" | "properties"
-                | "log" | "csv" | "tsv" | "diff" | "patch"
-        )
-    } else {
-        // Files without extensions might be text files (like README, Makefile, etc.)
-        // Check if filename suggests it's a text file
-        if let Some(name) = path.file_name() {
-            let name_str = name.to_string_lossy().to_lowercase();
-            name_str.starts_with("readme")
-                || name_str.starts_with("makefile")
-                || name_str.starts_with("dockerfile")
-                || name_str == "license"
-                || name_str == "changelog"
-                || name_str == "authors"
-                || name_str == "contributors"
-        } else {
-            false
-        }
+    // Try to open and read the file
+    let mut file = match fs::File::open(path) {
+        Ok(f) => f,
+        Err(_) => return false, // If we can't open it, skip it
+    };
+
+    // Read first 8KB (8192 bytes) to check if it's text
+    // This is similar to what ripgrep does
+    let mut buffer = vec![0u8; 8192];
+    let bytes_read = match file.read(&mut buffer) {
+        Ok(n) => n,
+        Err(_) => return false,
+    };
+
+    if bytes_read == 0 {
+        // Empty file is considered text
+        return true;
     }
+
+    // Trim buffer to actual bytes read
+    buffer.truncate(bytes_read);
+
+    // Check for NULL byte (\0) - this is a strong indicator of binary files
+    // 
+    // Why NULL bytes indicate binary files:
+    // 1. Text files (UTF-8, ASCII, etc.) use NULL only as string terminator in memory,
+    //    but actual text content should never contain NULL bytes
+    // 2. Binary formats frequently use NULL bytes:
+    //    - Executable files: padding, alignment, string tables
+    //    - Image formats: pixel data, metadata structures
+    //    - Compressed files: binary data structures
+    //    - Database files: binary records, padding
+    //    - Object files: symbol tables, relocation data
+    // 3. This heuristic is used by grep, ripgrep, and many Unix tools
+    //    because it's fast and has very few false positives
+    //
+    // Edge cases where text files might have NULL:
+    // - Very rare: UTF-16/UTF-32 text files (but these are uncommon)
+    // - Malformed text files (which we probably don't want to search anyway)
+    if buffer.contains(&0) {
+        return false;
+    }
+
+    // Count non-printable characters (excluding common whitespace)
+    // Common text whitespace: space (0x20), tab (0x09), newline (0x0A), carriage return (0x0D)
+    let non_printable_count = buffer.iter()
+        .filter(|&&b| {
+            b < 0x20 && b != 0x09 && b != 0x0A && b != 0x0D
+        })
+        .count();
+
+    // If more than 5% of bytes are non-printable (excluding common whitespace),
+    // consider it binary
+    let threshold = (bytes_read as f64 * 0.05) as usize;
+    non_printable_count <= threshold
 }
 
 fn count_pattern_in_file(path: &PathBuf, pattern: &str, case_insensitive: bool) -> Result<usize, Box<dyn std::error::Error>> {
@@ -89,7 +119,12 @@ fn search_directories(
         for entry in WalkDir::new(directory).into_iter().filter_map(|e| e.ok()) {
             let path = entry.path().to_path_buf();
             
-            if path.is_file() && is_text_file(&path) {
+            if path.is_file() {
+                // First check if it's a text file by content
+                if !is_text_file(&path) {
+                    continue; // Skip binary files
+                }
+
                 match count_pattern_in_file(&path, pattern, case_insensitive) {
                     Ok(count) => {
                         if count > 0 {

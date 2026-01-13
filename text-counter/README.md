@@ -46,17 +46,36 @@ text-counter <PATTERN> <DIRECTORY>... [OPTIONS]
 
 ## Output Format
 
-The application outputs results in the following format:
+```sh
+$ ~/text-counter/target/debug/text-counter pattern .
+File: ./README.md
+  Count: 2
 
-```
-File: path/to/file1.txt
-  Count: 5
-
-File: path/to/file2.md
-  Count: 12
+File: ./src/main.rs
+  Count: 13
 
 Total files searched: 2
-Total occurrences: 17
+Total occurrences: 15
+
+$ ~/text-counter/target/debug/text-counter count . -i
+File: ./Cargo.toml
+  Count: 1
+
+File: ./README.md
+  Count: 9
+
+File: ./src/main.rs
+  Count: 15
+
+Total files searched: 3
+Total occurrences: 25
+
+$ ~/text-counter/target/debug/text-counter cargo -i .
+File: ./README.md
+  Count: 1
+
+Total files searched: 1
+Total occurrences: 1
 ```
 
 ## Supported File Types
