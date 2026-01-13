@@ -1,0 +1,205 @@
+.dashboard-header {
+    padding: var(--spacing-xl) 0;
+    text-align: center;
+    background: linear-gradient(180deg, var(--bg-secondary) 0%, var(--bg-primary) 100%);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    margin-bottom: var(--spacing-xl);
+}
+
+.dashboard-title {
+    font-size: 2.5rem;
+    margin-bottom: var(--spacing-sm);
+    background: linear-gradient(to right, #fff, #94a3b8);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.dashboard-subtitle {
+    color: var(--text-secondary);
+    font-size: 1.1rem;
+}
+
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: var(--spacing-md);
+    margin-bottom: var(--spacing-xl);
+}
+
+.stat-card {
+    text-align: center;
+    padding: var(--spacing-lg);
+    background: var(--bg-card);
+    border-radius: var(--radius-lg);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.stat-value {
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--accent-color);
+    margin-bottom: var(--spacing-xs);
+}
+
+.stat-label {
+    color: var(--text-secondary);
+    font-size: 0.875rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.tabs {
+    display: flex;
+    justify-content: center;
+    gap: var(--spacing-md);
+    margin-bottom: var(--spacing-xl);
+}
+
+.tab-btn {
+    background: transparent;
+    color: var(--text-secondary);
+    border: 1px solid transparent;
+    padding: var(--spacing-md) var(--spacing-lg);
+    font-size: 1rem;
+}
+
+.tab-btn.active {
+    background: var(--bg-card);
+    color: var(--text-primary);
+    border-color: rgba(255, 255, 255, 0.1);
+}
+
+.plan-section {
+    display: grid;
+    gap: var(--spacing-lg);
+}
+
+.week-card {
+    background: var(--bg-secondary);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.week-header {
+    padding: var(--spacing-md) var(--spacing-lg);
+    background: rgba(0, 0, 0, 0.2);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.week-title {
+    font-weight: 600;
+    font-size: 1.1rem;
+}
+
+.week-phase {
+    font-size: 0.875rem;
+    padding: 0.25rem 0.5rem;
+    background: rgba(190, 242, 100, 0.1);
+    color: var(--accent-color);
+    border-radius: var(--radius-sm);
+}
+
+.days-grid {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+}
+
+.day-cell {
+    padding: var(--spacing-md);
+    border-right: 1px solid rgba(255, 255, 255, 0.05);
+    min-height: 100px;
+    display: flex;
+    flex-direction: column;
+    transition: background-color 0.2s;
+}
+
+.day-cell:last-child {
+    border-right: none;
+}
+
+.day-cell:hover {
+    background-color: rgba(255, 255, 255, 0.02);
+}
+
+.day-header {
+    font-size: 0.75rem;
+    color: var(--text-secondary);
+    margin-bottom: var(--spacing-sm);
+    display: flex;
+    justify-content: space-between;
+}
+
+.day-activity {
+    font-size: 0.9rem;
+    font-weight: 500;
+    margin-top: auto;
+}
+
+.type-rest .day-activity {
+    color: var(--text-secondary);
+    opacity: 0.7;
+}
+
+.type-easy .day-activity {
+    color: var(--success);
+}
+
+.type-long .day-activity {
+    color: var(--accent-color);
+}
+
+.type-tempo .day-activity {
+    color: #facc15;
+}
+
+.type-interval .day-activity {
+    color: #f472b6;
+}
+
+.type-race .day-activity {
+    color: #ef4444;
+    font-weight: 700;
+}
+
+.diet-section {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: var(--spacing-lg);
+}
+
+.diet-card {
+    background: var(--bg-secondary);
+    padding: var(--spacing-lg);
+    border-radius: var(--radius-lg);
+    border-top: 4px solid var(--accent-color);
+}
+
+.diet-title {
+    font-size: 1.25rem;
+    margin-bottom: var(--spacing-md);
+    color: var(--text-primary);
+}
+
+.diet-content {
+    color: var(--text-secondary);
+    line-height: 1.6;
+}
+
+@media (max-width: 768px) {
+    .days-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .day-cell {
+        border-right: none;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        min-height: auto;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+    }
+}
