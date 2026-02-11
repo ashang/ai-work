@@ -1,0 +1,320 @@
+
+> web-chess-app@1.0.0 test /Users/aaron/repo/kiro-yam-chess
+> vitest run
+
+
+ RUN  v1.6.1 /Users/aaron/repo/kiro-yam-chess
+
+ ❯ tests/config-validation.test.ts  (6 tests | 1 failed) 4ms
+   ❯ tests/config-validation.test.ts > Project Configuration > should have valid tsconfig.json
+     → Expected double-quoted property name in JSON at position 187 (line 9 column 5)
+ ✓ tests/types/chess.test.ts  (63 tests) 9ms
+ ❯ tests/engine/ChessEngine.test.ts  (63 tests | 8 failed) 24ms
+   ❯ tests/engine/ChessEngine.test.ts > ChessEngine > Pawn Promotion > should allow white pawn to move to promotion square
+     → expected [ { row: +0, col: 3 }, …(1) ] to deep equally contain { row: +0, col: 4 }
+   ❯ tests/engine/ChessEngine.test.ts > ChessEngine > Pawn Promotion > should allow black pawn to move to promotion square
+     → expected [ { row: 7, col: 3 }, …(1) ] to deep equally contain { row: 7, col: 4 }
+   ❯ tests/engine/ChessEngine.test.ts > ChessEngine > Castling > should not allow castling if king is in check
+     → expected [ { row: 7, col: 5 }, …(1) ] to not deep equally contain { row: 7, col: 6 }
+   ❯ tests/engine/ChessEngine.test.ts > ChessEngine > Castling > should not allow castling if king passes through check
+     → expected [ { row: 7, col: 5 }, …(1) ] to not deep equally contain { row: 7, col: 6 }
+   ❯ tests/engine/ChessEngine.test.ts > ChessEngine > Castling > should not allow castling if king ends in check
+     → expected [ { row: 7, col: 5 }, …(1) ] to not deep equally contain { row: 7, col: 6 }
+   ❯ tests/engine/ChessEngine.test.ts > ChessEngine > Check Detection > should detect when white king is in check
+     → expected false to be true // Object.is equality
+   ❯ tests/engine/ChessEngine.test.ts > ChessEngine > Check Detection > should detect when black king is in check
+     → expected false to be true // Object.is equality
+   ❯ tests/engine/ChessEngine.test.ts > ChessEngine > Stalemate Detection > should detect stalemate when king has no moves but is not in check
+     → expected false to be true // Object.is equality
+ ✓ tests/setup.test.ts  (3 tests) 3ms
+ ❯ tests/engine/ChessEngine.property.test.ts  (12 tests | 1 failed) 47ms
+   ❯ tests/engine/ChessEngine.property.test.ts > ChessEngine Property-Based Tests > Property 29: En passant should only be allowed when conditions are met
+     → Property failed after 48 tests
+{ seed: 702521360, path: "47:0", endOnFailure: true }
+Counterexample: ["white",2,3,true,false]
+Shrunk 1 time(s)
+Got AssertionError: expected true to be false // Object.is equality
+    at /Users/aaron/repo/kiro-yam-chess/tests/engine/ChessEngine.property.test.ts:474:40
+    at Property.predicate (file:///Users/aaron/repo/kiro-yam-chess/node_modules/.pnpm/fast-check@3.23.2/node_modules/fast-check/lib/esm/check/property/Property.js:14:54)
+    at Property.run (file:///Users/aaron/repo/kiro-yam-chess/node_modules/.pnpm/fast-check@3.23.2/node_modules/fast-check/lib/esm/check/property/Property.generic.js:46:33)
+    at runIt (file:///Users/aaron/repo/kiro-yam-chess/node_modules/.pnpm/fast-check@3.23.2/node_modules/fast-check/lib/esm/check/runner/Runner.js:18:30)
+    at check (file:///Users/aaron/repo/kiro-yam-chess/node_modules/.pnpm/fast-check@3.23.2/node_modules/fast-check/lib/esm/check/runner/Runner.js:62:11)
+    at Proxy.assert (file:///Users/aaron/repo/kiro-yam-chess/node_modules/.pnpm/fast-check@3.23.2/node_modules/fast-check/lib/esm/check/runner/Runner.js:65:17)
+    at /Users/aaron/repo/kiro-yam-chess/tests/engine/ChessEngine.property.test.ts:386:8
+    at file:///Users/aaron/repo/kiro-yam-chess/node_modules/.pnpm/@vitest+runner@1.6.1/node_modules/@vitest/runner/dist/index.js:135:14
+    at file:///Users/aaron/repo/kiro-yam-chess/node_modules/.pnpm/@vitest+runner@1.6.1/node_modules/@vitest/runner/dist/index.js:60:26
+    at runTest (file:///Users/aaron/repo/kiro-yam-chess/node_modules/.pnpm/@vitest+runner@1.6.1/node_modules/@vitest/runner/dist/index.js:781:17)
+
+Hint: Enable verbose mode in order to have the list of all failing values encountered during the run
+
+⎯⎯⎯⎯⎯⎯ Failed Tests 10 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/config-validation.test.ts > Project Configuration > should have valid tsconfig.json
+SyntaxError: Expected double-quoted property name in JSON at position 187 (line 9 column 5)
+ ❯ tests/config-validation.test.ts:14:27
+     12|     expect(existsSync(tsconfigPath)).toBe(true);
+     13|     
+     14|     const tsconfig = JSON.parse(readFileSync(tsconfigPath, 'utf-8'));
+       |                           ^
+     15|     expect(tsconfig.compilerOptions.strict).toBe(true);
+     16|     expect(tsconfig.compilerOptions.target).toBe('ES2020');
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/10]⎯
+
+ FAIL  tests/engine/ChessEngine.property.test.ts > ChessEngine Property-Based Tests > Property 29: En passant should only be allowed when conditions are met
+Error: Property failed after 48 tests
+{ seed: 702521360, path: "47:0", endOnFailure: true }
+Counterexample: ["white",2,3,true,false]
+Shrunk 1 time(s)
+Got AssertionError: expected true to be false // Object.is equality
+    at /Users/aaron/repo/kiro-yam-chess/tests/engine/ChessEngine.property.test.ts:474:40
+    at Property.predicate (file:///Users/aaron/repo/kiro-yam-chess/node_modules/.pnpm/fast-check@3.23.2/node_modules/fast-check/lib/esm/check/property/Property.js:14:54)
+    at Property.run (file:///Users/aaron/repo/kiro-yam-chess/node_modules/.pnpm/fast-check@3.23.2/node_modules/fast-check/lib/esm/check/property/Property.generic.js:46:33)
+    at runIt (file:///Users/aaron/repo/kiro-yam-chess/node_modules/.pnpm/fast-check@3.23.2/node_modules/fast-check/lib/esm/check/runner/Runner.js:18:30)
+    at check (file:///Users/aaron/repo/kiro-yam-chess/node_modules/.pnpm/fast-check@3.23.2/node_modules/fast-check/lib/esm/check/runner/Runner.js:62:11)
+    at Proxy.assert (file:///Users/aaron/repo/kiro-yam-chess/node_modules/.pnpm/fast-check@3.23.2/node_modules/fast-check/lib/esm/check/runner/Runner.js:65:17)
+    at /Users/aaron/repo/kiro-yam-chess/tests/engine/ChessEngine.property.test.ts:386:8
+    at file:///Users/aaron/repo/kiro-yam-chess/node_modules/.pnpm/@vitest+runner@1.6.1/node_modules/@vitest/runner/dist/index.js:135:14
+    at file:///Users/aaron/repo/kiro-yam-chess/node_modules/.pnpm/@vitest+runner@1.6.1/node_modules/@vitest/runner/dist/index.js:60:26
+    at runTest (file:///Users/aaron/repo/kiro-yam-chess/node_modules/.pnpm/@vitest+runner@1.6.1/node_modules/@vitest/runner/dist/index.js:781:17)
+
+Hint: Enable verbose mode in order to have the list of all failing values encountered during the run
+ ❯ tests/engine/ChessEngine.property.test.ts:474:40
+    472|             // (though regular capture might be if there's a piece the…
+    473|             if (!movedTwoSquares || !areAdjacent) {
+    474|               expect(hasEnPassantMove).toBe(false);
+       |                                        ^
+    475|             }
+    476|           }
+ ❯ Property.predicate node_modules/.pnpm/fast-check@3.23.2/node_modules/fast-check/lib/esm/check/property/Property.js:14:54
+ ❯ Property.run node_modules/.pnpm/fast-check@3.23.2/node_modules/fast-check/lib/esm/check/property/Property.generic.js:46:33
+ ❯ runIt node_modules/.pnpm/fast-check@3.23.2/node_modules/fast-check/lib/esm/check/runner/Runner.js:18:30
+ ❯ check node_modules/.pnpm/fast-check@3.23.2/node_modules/fast-check/lib/esm/check/runner/Runner.js:62:11
+ ❯ Proxy.assert node_modules/.pnpm/fast-check@3.23.2/node_modules/fast-check/lib/esm/check/runner/Runner.js:65:17
+ ❯ tests/engine/ChessEngine.property.test.ts:386:8
+ ❯ buildError node_modules/.pnpm/fast-check@3.23.2/node_modules/fast-check/lib/esm/check/runner/utils/RunDetailsFormatter.js:126:15
+ ❯ throwIfFailed node_modules/.pnpm/fast-check@3.23.2/node_modules/fast-check/lib/esm/check/runner/utils/RunDetailsFormatter.js:138:11
+ ❯ reportRunDetails node_modules/.pnpm/fast-check@3.23.2/node_modules/fast-check/lib/esm/check/runner/utils/RunDetailsFormatter.js:151:16
+ ❯ Proxy.assert node_modules/.pnpm/fast-check@3.23.2/node_modules/fast-check/lib/esm/check/runner/Runner.js:69:9
+ ❯ tests/engine/ChessEngine.property.test.ts:386:8
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/10]⎯
+
+ FAIL  tests/engine/ChessEngine.test.ts > ChessEngine > Pawn Promotion > should allow white pawn to move to promotion square
+AssertionError: expected [ { row: +0, col: 3 }, …(1) ] to deep equally contain { row: +0, col: 4 }
+
+- Expected: 
+Object {
+  "col": 4,
+  "row": 0,
+}
+
++ Received: 
+Array [
+  Object {
+    "col": 3,
+    "row": 0,
+  },
+  Object {
+    "col": 5,
+    "row": 0,
+  },
+]
+
+ ❯ tests/engine/ChessEngine.test.ts:672:21
+    670|       
+    671|       // Should be able to move to row 0 (promotion square)
+    672|       expect(moves).toContainEqual({ row: 0, col: 4 });
+       |                     ^
+    673|     });
+    674| 
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/10]⎯
+
+ FAIL  tests/engine/ChessEngine.test.ts > ChessEngine > Pawn Promotion > should allow black pawn to move to promotion square
+AssertionError: expected [ { row: 7, col: 3 }, …(1) ] to deep equally contain { row: 7, col: 4 }
+
+- Expected: 
+Object {
+  "col": 4,
+  "row": 7,
+}
+
++ Received: 
+Array [
+  Object {
+    "col": 3,
+    "row": 7,
+  },
+  Object {
+    "col": 5,
+    "row": 7,
+  },
+]
+
+ ❯ tests/engine/ChessEngine.test.ts:705:21
+    703|       
+    704|       // Should be able to move to row 7 (promotion square)
+    705|       expect(moves).toContainEqual({ row: 7, col: 4 });
+       |                     ^
+    706|     });
+    707| 
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[4/10]⎯
+
+ FAIL  tests/engine/ChessEngine.test.ts > ChessEngine > Castling > should not allow castling if king is in check
+AssertionError: expected [ { row: 7, col: 5 }, …(1) ] to not deep equally contain { row: 7, col: 6 }
+
+- Expected: 
+Object {
+  "col": 6,
+  "row": 7,
+}
+
++ Received: 
+Array [
+  Object {
+    "col": 5,
+    "row": 7,
+  },
+  Object {
+    "col": 6,
+    "row": 7,
+  },
+]
+
+ ❯ tests/engine/ChessEngine.test.ts:1055:25
+    1053|       
+    1054|       // Should not include castling moves
+    1055|       expect(moves).not.toContainEqual({ row: 7, col: 6 });
+       |                         ^
+    1056|     });
+    1057| 
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[5/10]⎯
+
+ FAIL  tests/engine/ChessEngine.test.ts > ChessEngine > Castling > should not allow castling if king passes through check
+AssertionError: expected [ { row: 7, col: 5 }, …(1) ] to not deep equally contain { row: 7, col: 6 }
+
+- Expected: 
+Object {
+  "col": 6,
+  "row": 7,
+}
+
++ Received: 
+Array [
+  Object {
+    "col": 5,
+    "row": 7,
+  },
+  Object {
+    "col": 6,
+    "row": 7,
+  },
+]
+
+ ❯ tests/engine/ChessEngine.test.ts:1076:25
+    1074|       
+    1075|       // Should not include kingside castling
+    1076|       expect(moves).not.toContainEqual({ row: 7, col: 6 });
+       |                         ^
+    1077|     });
+    1078| 
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[6/10]⎯
+
+ FAIL  tests/engine/ChessEngine.test.ts > ChessEngine > Castling > should not allow castling if king ends in check
+AssertionError: expected [ { row: 7, col: 5 }, …(1) ] to not deep equally contain { row: 7, col: 6 }
+
+- Expected: 
+Object {
+  "col": 6,
+  "row": 7,
+}
+
++ Received: 
+Array [
+  Object {
+    "col": 5,
+    "row": 7,
+  },
+  Object {
+    "col": 6,
+    "row": 7,
+  },
+]
+
+ ❯ tests/engine/ChessEngine.test.ts:1097:25
+    1095|       
+    1096|       // Should not include kingside castling (filtered by wouldLeaveK…
+    1097|       expect(moves).not.toContainEqual({ row: 7, col: 6 });
+       |                         ^
+    1098|     });
+    1099| 
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[7/10]⎯
+
+ FAIL  tests/engine/ChessEngine.test.ts > ChessEngine > Check Detection > should detect when white king is in check
+AssertionError: expected false to be true // Object.is equality
+
+- Expected
++ Received
+
+- true
++ false
+
+ ❯ tests/engine/ChessEngine.test.ts:1129:25
+    1127|       const isInCheck = engine.isInCheck('white', state);
+    1128|       
+    1129|       expect(isInCheck).toBe(true);
+       |                         ^
+    1130|     });
+    1131| 
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[8/10]⎯
+
+ FAIL  tests/engine/ChessEngine.test.ts > ChessEngine > Check Detection > should detect when black king is in check
+AssertionError: expected false to be true // Object.is equality
+
+- Expected
++ Received
+
+- true
++ false
+
+ ❯ tests/engine/ChessEngine.test.ts:1145:25
+    1143|       const isInCheck = engine.isInCheck('black', state);
+    1144|       
+    1145|       expect(isInCheck).toBe(true);
+       |                         ^
+    1146|     });
+    1147| 
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[9/10]⎯
+
+ FAIL  tests/engine/ChessEngine.test.ts > ChessEngine > Stalemate Detection > should detect stalemate when king has no moves but is not in check
+AssertionError: expected false to be true // Object.is equality
+
+- Expected
++ Received
+
+- true
++ false
+
+ ❯ tests/engine/ChessEngine.test.ts:1292:27
+    1290|       const isStalemate = engine.isStalemate(state);
+    1291|       
+    1292|       expect(isStalemate).toBe(true);
+       |                           ^
+    1293|     });
+    1294| 
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[10/10]⎯
+
+ Test Files  3 failed | 2 passed (5)
+      Tests  10 failed | 137 passed (147)
+   Start at  08:11:25
+   Duration  812ms (transform 173ms, setup 0ms, collect 465ms, tests 87ms, environment 1.99s, prepare 357ms)
+
+ ELIFECYCLE  Test failed. See above for more details.

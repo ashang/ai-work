@@ -1,0 +1,58 @@
+
+[1m[46m RUN [49m[22m [36mv4.0.18 [39m[90m/Users/aaron/repo/kiro-yam-chess[39m
+
+[31m⎯⎯⎯⎯⎯⎯[39m[1m[41m Unhandled Errors [49m[22m[31m⎯⎯⎯⎯⎯⎯[39m
+[31m[1m
+Vitest caught 2 unhandled errors during the test run.
+This might cause false positive tests. Resolve unhandled errors to make sure your tests are not affected.[22m[39m
+
+[31m⎯⎯⎯⎯⎯⎯[39m[1m[41m Unhandled Error [49m[22m[31m⎯⎯⎯⎯⎯⎯⎯[39m
+[31m[1mError[22m: [vitest-pool]: Failed to start forks worker for test files /Users/aaron/repo/kiro-yam-chess/tests/ai/AIOpponent.test.ts.[39m
+[90m [2m❯[22m ../../.cache/pnpm/dlx/c2b39a0ee9ca70833730bd78a3d960f348d060ceaebb16f9d28bf2726d6d4dad/19c3d9cb5e5-17307/node_modules/.pnpm/vitest@4.0.18/node_modules/vitest/dist/chunks/cli-api.B7PN_QUv.js:[2m8046:94[22m[39m
+[90m [2m❯[22m processTicksAndRejections node:internal/process/task_queues:[2m103:5[22m[39m
+[90m [2m❯[22m Pool.schedule ../../.cache/pnpm/dlx/c2b39a0ee9ca70833730bd78a3d960f348d060ceaebb16f9d28bf2726d6d4dad/19c3d9cb5e5-17307/node_modules/.pnpm/vitest@4.0.18/node_modules/vitest/dist/chunks/cli-api.B7PN_QUv.js:[2m8046:5[22m[39m
+
+[31m[1mCaused by: Error[22m: Cannot find package 'jsdom' imported from /Users/aaron/.cache/pnpm/dlx/c2b39a0ee9ca70833730bd78a3d960f348d060ceaebb16f9d28bf2726d6d4dad/19c3d9cb5e5-17307/node_modules/.pnpm/vitest@4.0.18/node_modules/vitest/dist/chunks/index.CyBMJtT7.js[39m
+[90m [2m❯[22m Object.getPackageJSONURL node:internal/modules/package_json_reader:[2m316:9[22m[39m
+[90m [2m❯[22m packageResolve node:internal/modules/esm/resolve:[2m768:81[22m[39m
+[90m [2m❯[22m moduleResolve node:internal/modules/esm/resolve:[2m858:18[22m[39m
+[90m [2m❯[22m defaultResolve node:internal/modules/esm/resolve:[2m990:11[22m[39m
+[90m [2m❯[22m #cachedDefaultResolve node:internal/modules/esm/loader:[2m712:20[22m[39m
+[90m [2m❯[22m #resolveAndMaybeBlockOnLoaderThread node:internal/modules/esm/loader:[2m729:38[22m[39m
+[90m [2m❯[22m ModuleLoader.resolveSync node:internal/modules/esm/loader:[2m758:52[22m[39m
+[90m [2m❯[22m #resolve node:internal/modules/esm/loader:[2m694:17[22m[39m
+[90m [2m❯[22m ModuleLoader.getOrCreateModuleJob node:internal/modules/esm/loader:[2m614:35[22m[39m
+[90m [2m❯[22m onImport.tracePromise.__proto__ node:internal/modules/esm/loader:[2m643:32[22m[39m
+
+[31m[2m⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[22m[39m
+[31m[1mSerialized Error:[22m[39m [90m{ code: 'ERR_MODULE_NOT_FOUND' }[39m
+
+[31m⎯⎯⎯⎯⎯⎯[39m[1m[41m Unhandled Error [49m[22m[31m⎯⎯⎯⎯⎯⎯⎯[39m
+[31m[1mError[22m: [vitest-pool]: Failed to start forks worker for test files /Users/aaron/repo/kiro-yam-chess/tests/ai/AIOpponent.property.test.ts.[39m
+[90m [2m❯[22m ../../.cache/pnpm/dlx/c2b39a0ee9ca70833730bd78a3d960f348d060ceaebb16f9d28bf2726d6d4dad/19c3d9cb5e5-17307/node_modules/.pnpm/vitest@4.0.18/node_modules/vitest/dist/chunks/cli-api.B7PN_QUv.js:[2m8046:94[22m[39m
+[90m [2m❯[22m processTicksAndRejections node:internal/process/task_queues:[2m103:5[22m[39m
+[90m [2m❯[22m Pool.schedule ../../.cache/pnpm/dlx/c2b39a0ee9ca70833730bd78a3d960f348d060ceaebb16f9d28bf2726d6d4dad/19c3d9cb5e5-17307/node_modules/.pnpm/vitest@4.0.18/node_modules/vitest/dist/chunks/cli-api.B7PN_QUv.js:[2m8046:5[22m[39m
+
+[31m[1mCaused by: Error[22m: Cannot find package 'jsdom' imported from /Users/aaron/.cache/pnpm/dlx/c2b39a0ee9ca70833730bd78a3d960f348d060ceaebb16f9d28bf2726d6d4dad/19c3d9cb5e5-17307/node_modules/.pnpm/vitest@4.0.18/node_modules/vitest/dist/chunks/index.CyBMJtT7.js[39m
+[90m [2m❯[22m Object.getPackageJSONURL node:internal/modules/package_json_reader:[2m316:9[22m[39m
+[90m [2m❯[22m packageResolve node:internal/modules/esm/resolve:[2m768:81[22m[39m
+[90m [2m❯[22m moduleResolve node:internal/modules/esm/resolve:[2m858:18[22m[39m
+[90m [2m❯[22m defaultResolve node:internal/modules/esm/resolve:[2m990:11[22m[39m
+[90m [2m❯[22m #cachedDefaultResolve node:internal/modules/esm/loader:[2m712:20[22m[39m
+[90m [2m❯[22m #resolveAndMaybeBlockOnLoaderThread node:internal/modules/esm/loader:[2m729:38[22m[39m
+[90m [2m❯[22m ModuleLoader.resolveSync node:internal/modules/esm/loader:[2m758:52[22m[39m
+[90m [2m❯[22m #resolve node:internal/modules/esm/loader:[2m694:17[22m[39m
+[90m [2m❯[22m ModuleLoader.getOrCreateModuleJob node:internal/modules/esm/loader:[2m614:35[22m[39m
+[90m [2m❯[22m onImport.tracePromise.__proto__ node:internal/modules/esm/loader:[2m643:32[22m[39m
+
+[31m[2m⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[22m[39m
+[31m[1mSerialized Error:[22m[39m [90m{ code: 'ERR_MODULE_NOT_FOUND' }[39m
+[31m⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[39m
+
+
+[2m Test Files [22m [2mno tests[22m
+[2m      Tests [22m [2mno tests[22m
+[2m     Errors [22m [1m[31m2 errors[39m[22m
+[2m   Start at [22m 09:08:26
+[2m   Duration [22m 108ms[2m (transform 0ms, setup 0ms, import 0ms, tests 0ms, environment 0ms)[22m
+

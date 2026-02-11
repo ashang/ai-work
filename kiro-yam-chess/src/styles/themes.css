@@ -1,0 +1,267 @@
+/**
+ * Theme CSS Custom Properties
+ * Defines color schemes for light and dark themes
+ */
+
+/* Light Theme (Default) */
+:root {
+  /* Board colors */
+  --light-square: #f0d9b5;
+  --dark-square: #b58863;
+  --highlight: #fbbf24;
+  --valid-move: #10b981;
+  
+  /* UI colors */
+  --bg-primary: #ffffff;
+  --bg-secondary: #f9fafb;
+  --text-primary: #1f2937;
+  --text-secondary: #6b7280;
+  
+  /* Component colors */
+  --button-primary: #3b82f6;
+  --button-secondary: #9ca3af;
+  --border: #e5e7eb;
+  
+  /* Additional colors */
+  --background: #ffffff;
+  --foreground: #f9fafb;
+  --text: #1f2937;
+}
+
+/* Dark Theme */
+.dark-theme {
+  /* Board colors */
+  --light-square: #779556;
+  --dark-square: #4a5f3a;
+  --highlight: #f59e0b;
+  --valid-move: #059669;
+  
+  /* UI colors */
+  --bg-primary: #0f172a;
+  --bg-secondary: #1e293b;
+  --text-primary: #f1f5f9;
+  --text-secondary: #cbd5e1;
+  
+  /* Component colors */
+  --button-primary: #3b82f6;
+  --button-secondary: #64748b;
+  --border: #334155;
+  
+  /* Additional colors */
+  --background: #0f172a;
+  --foreground: #1e293b;
+  --text: #f1f5f9;
+}
+
+/* Smooth theme transitions */
+* {
+  transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+}
+
+/* Exclude animations from theme transitions */
+.piece,
+.move-indicator,
+.shake {
+  transition: none;
+}
+
+/* Board styling */
+.board {
+  background-color: var(--border);
+}
+
+.square {
+  transition: background-color 0.15s ease;
+}
+
+.light-square {
+  background-color: var(--light-square);
+}
+
+.dark-square {
+  background-color: var(--dark-square);
+}
+
+.square.selected {
+  background-color: var(--highlight) !important;
+}
+
+.square.valid-move {
+  position: relative;
+}
+
+/* UI Components */
+body {
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  margin: 0;
+  padding: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+button {
+  background-color: var(--button-primary);
+  color: white;
+  border: 1px solid var(--border);
+  transition: background-color 0.2s ease, transform 0.1s ease;
+}
+
+button:hover:not(:disabled) {
+  opacity: 0.9;
+  transform: translateY(-1px);
+}
+
+button:active:not(:disabled) {
+  transform: translateY(0);
+}
+
+button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+select {
+  background-color: var(--bg-secondary);
+  color: var(--text-primary);
+  border: 1px solid var(--border);
+}
+
+/* Game status */
+.game-status {
+  color: var(--text-primary);
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  background-color: var(--bg-secondary);
+  border: 1px solid var(--border);
+}
+
+.game-status.check {
+  background-color: #fef3c7;
+  color: #92400e;
+  border-color: #fbbf24;
+}
+
+.dark-theme .game-status.check {
+  background-color: #78350f;
+  color: #fef3c7;
+  border-color: #f59e0b;
+}
+
+.game-status.checkmate,
+.game-status.resigned {
+  background-color: #fee2e2;
+  color: #991b1b;
+  border-color: #ef4444;
+}
+
+.dark-theme .game-status.checkmate,
+.dark-theme .game-status.resigned {
+  background-color: #7f1d1d;
+  color: #fee2e2;
+  border-color: #dc2626;
+}
+
+.game-status.stalemate {
+  background-color: #e0e7ff;
+  color: #3730a3;
+  border-color: #6366f1;
+}
+
+.dark-theme .game-status.stalemate {
+  background-color: #312e81;
+  color: #e0e7ff;
+  border-color: #6366f1;
+}
+
+/* Move history */
+#move-history {
+  background-color: var(--bg-secondary);
+  color: var(--text-primary);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  padding: 1rem;
+}
+
+/* Captured pieces */
+#captured-white,
+#captured-black {
+  background-color: var(--bg-secondary);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  padding: 0.5rem;
+  min-height: 2rem;
+}
+
+/* Difficulty display */
+.difficulty-display {
+  background-color: var(--bg-secondary);
+  color: var(--text-primary);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  padding: 0.5rem 1rem;
+  font-weight: 600;
+}
+
+.difficulty-display.difficulty-easy {
+  background-color: #d1fae5;
+  color: #065f46;
+  border-color: #10b981;
+}
+
+.dark-theme .difficulty-display.difficulty-easy {
+  background-color: #064e3b;
+  color: #d1fae5;
+  border-color: #059669;
+}
+
+.difficulty-display.difficulty-hard {
+  background-color: #fee2e2;
+  color: #991b1b;
+  border-color: #ef4444;
+}
+
+.dark-theme .difficulty-display.difficulty-hard {
+  background-color: #7f1d1d;
+  color: #fee2e2;
+  border-color: #dc2626;
+}
+
+/* Modal */
+.modal {
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.modal-content {
+  background-color: var(--foreground);
+  color: var(--text);
+  border: 1px solid var(--border);
+}
+
+/* Promotion dialog */
+.promotion-backdrop {
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.promotion-dialog {
+  background-color: var(--foreground);
+  color: var(--text);
+  border: 1px solid var(--border);
+}
+
+.promotion-dialog h3 {
+  color: var(--text);
+}
+
+.promotion-dialog button {
+  background-color: var(--background);
+  color: var(--text);
+  border: 2px solid var(--border);
+}
+
+.promotion-dialog button:hover {
+  background-color: var(--bg-secondary);
+}
